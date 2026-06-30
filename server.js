@@ -18,6 +18,10 @@ const transporter = nodemailer.createTransport({
     }
 });
 
+app get("/", (req, res) => {
+    res.send("Server is running");
+});
+
 app.post("/send-answer", async (req, res) => {
     console.log("🔥 NODE RECEIVED REQUEST");
     console.log(req.body);

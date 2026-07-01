@@ -277,7 +277,7 @@ async function sendAnswer(){
 
     try {
 
-        const response = await fetch("https://temwani-chipego-site-1.onrender.com/send answer",
+        const response = await fetch("https://temwani-chipego-site-1.onrender.com/send-answer",
             {
                 method: "POST",
                 headers: {
@@ -295,21 +295,14 @@ async function sendAnswer(){
         console.log("Response:",text);
 
         if(data.success){
-
             alert("Sent to Chipego 💌❤️");
-
             answerBox.value = "";
-
-        } else {
-
+         } else {
             alert("Failed 💔");
-
         }
 
     } catch(error){
-
         console.error(error);
-
         alert("Something went wrong 💔");
 
     }

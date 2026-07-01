@@ -277,7 +277,7 @@ async function sendAnswer(){
 
     try {
 
-        const response = await fetch("https://temwani-chipego-site-1.onrender.com/",
+        const response = await fetch("https://temwani-chipego-site-1.onrender.com/send answer",
             {
                 method: "POST",
                 headers: {

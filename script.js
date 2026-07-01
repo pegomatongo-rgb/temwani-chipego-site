@@ -259,30 +259,50 @@ document.getElementById("final")
 .scrollIntoView({behavior:"smooth"});
 
 }
-async function sendAnswer(){
-       console.log("Button clicked");
-    const answerBox =
-    document.querySelector("#questions textarea");
+async function sendAnswer() {
+    console.log("Button clicked");
 
-    const answer =
-    answerBox.value;
+    const answerBox = document.querySelector("#questions textarea");
+    const answer = answerBox.value;
 
-    const question =
-    document.getElementById("question").innerText;
+    const question = document.getElementById("question").innerText;
 
-    if(answer.trim() === ""){
+    if (answer.trim() === "") {
         alert("Please write an answer first 💗");
         return;
     }
 
     try {
-
-        const response = await fetch("https://temwani-chipego-site-1.onrender.com/send-answer",
+        const response = await fetch(
+            "https://temwani-chipego-site-1.onrender.com/send-answer",
             {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
+                body: JSON.stringify({
+                    question: question,
+                    answer: answer
+                })
+            }
+        );
+
+        console.log("Status:", response.status);
+
+        const data = await response.json();  // 🔥 THIS IS WHAT YOU’RE MISSING
+
+        console.log("Response:", data);
+
+        if (data.success) {
+            console.log("Saved successfully");
+        } else {
+            console.log("Server rejected request");
+        }
+
+    } catch (error) {
+        console.error("Fetch error:", error);
+    }
+}
                 body: JSON.stringify({
                     question: question,
                     answer: answer

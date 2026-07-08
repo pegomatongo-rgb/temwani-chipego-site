@@ -262,7 +262,7 @@ document.getElementById("final")
 async function sendAnswer() {
     console.log("Button clicked");
 
-    const answerBox = document.querySelector("#questions textarea");
+    const answerBox = document.getElementById("answerBox");
     const answer = answerBox.value;
 
     const question = document.getElementById("question").innerText;

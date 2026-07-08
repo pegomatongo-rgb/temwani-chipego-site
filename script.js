@@ -303,31 +303,7 @@ async function sendAnswer() {
         console.error("Fetch error:", error);
     }
 }
-                body: JSON.stringify({
-                    question: question,
-                    answer: answer
-                })
-            }
-        );
-
-        console.log("Status:", response.status);
-        const text = await response.text();
-        console.log("Response:",text);
-
-        if(data.success){
-            alert("Sent to Chipego 💌❤️");
-            answerBox.value = "";
-         } else {
-            alert("Failed 💔");
-        }
-
-    } catch(error){
-        console.error(error);
-        alert("Something went wrong 💔");
-
-    }
-
-}
+              
 
 function openLetter(){
 

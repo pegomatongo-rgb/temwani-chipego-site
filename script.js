@@ -177,7 +177,11 @@ const questions = [
 
 "What direction do you see our relationship going in?",
 
+"Have i helped you heal from someting i didnt even know hurt you? ", 
+
 "What's your endgame goal for us?",
+
+ "Was there a moment with me that made you see love differently",   
 
 "What do you think about the sexual aspect of our relationship?",
 
@@ -188,6 +192,8 @@ const questions = [
 "If we are to ever go clubbing together how do you think it will go?",
 
 "What is your favourite memory of us?",
+
+"Do you feellike you always hgave to be strong in front of me or do you feel like you can fall apart?",
 
 "When do you feel closest to me?",
 
@@ -260,14 +266,13 @@ document.getElementById("final")
 
 }
 async function sendAnswer() {
-    console.log("Button clicked");
-
     const answerBox = document.getElementById("answerBox");
-    const answer = answerBox.value;
+    const questionBox = document.getElementById("question");
 
-    const question = document.getElementById("question").innerText;
+    const answer = answerBox.value.trim();
+    const question = questionBox.innerText;
 
-    if (answer.trim() === "") {
+    if (!answer) {
         alert("Please write an answer first 💗");
         return;
     }
@@ -287,23 +292,26 @@ async function sendAnswer() {
             }
         );
 
-        console.log("Status:", response.status);
+        const data = await response.json();
 
-        const data = await response.json();  // 🔥 THIS IS WHAT YOU’RE MISSING
-
-        console.log("Response:", data);
-
-        if (data.success) {
-            console.log("Saved successfully");
-        } else {
-            console.log("Server rejected request");
+        if (!response.ok || !data.success) {
+            alert(
+                "Your answer could not be sent. Please try again later. 💗"
+            );
+            console.error("Server error:", response.status, data);
+            return;
         }
 
+        alert("Your answer has been sent successfully! ❤️");
+        answerBox.value = "";
+
     } catch (error) {
-        console.error("Fetch error:", error);
+        console.error("Error sending answer:", error);
+        alert(
+            "We couldn't connect to the server. Please try again later. 💗"
+        );
     }
-}
-              
+}       
 
 function openLetter(){
 
